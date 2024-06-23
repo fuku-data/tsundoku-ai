@@ -97,12 +97,12 @@ def converse_with_ai(model_name, temperature):
         st.session_state.messages.append({'role': 'user', 'content': content})
         with st.spinner(f'{st.session_state.lg_Processing}'):
             messages = st.session_state.messages
-            response = openai.ChatCompletion.create(
+            response = openai.chat.completions.create(
                 model=model_name,
                 messages=messages,  # 文字列に変換したmessagesを渡す
                 temperature=temperature
             )
-        st.session_state.messages.append({'role': 'assistant', 'content': response.choices[0]['message']['content']})
+        st.session_state.messages.append({'role': 'assistant', 'content': response.choices[0].message.content})
 
     # present chat history
     messages = st.session_state.messages

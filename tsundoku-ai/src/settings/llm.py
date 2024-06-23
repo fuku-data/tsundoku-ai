@@ -62,12 +62,14 @@ def set_or_clear_openai_api_key() -> None:
             #     st.session_state.llm_click_set_or_clear_button_result = 'success'
             # except AuthenticationError:
             #     st.session_state.llm_click_set_or_clear_button_result = 'authentication_error'
-            test_response = openai.Completion.create(
-                engine='babbage',
-                prompt='This is a test request to check API key validity.',
-                max_tokens=5
-            )
-            test_response.choices[0].text
+
+            # FUTURE FIXME: 入力されたAPIが間違っているかどうかテストする
+            # test_response = openai.chat.completions.create(
+            #     engine='babbage',
+            #     prompt='This is a test request to check API key validity.',
+            #     max_tokens=5
+            # )
+            # test_response.choices[0].text
 
             st.session_state.llm_connection_flag = True
             st.session_state.llm_click_set_or_clear_button_result = 'success'
