@@ -72,6 +72,15 @@ def init_messages():
             ###例2
             - 質問：`SnowflakeとRedshiftのメリットを教えて下さい。`
             - 返却値：`['Snowflake', 'Redshift']`
+            ###例3
+            - 質問：'Reactのstateとrefの違いを教えてください'
+            - 返却値：`['React','state','ref']`
+            ###例4
+            - 質問：'Pythonのバージョン管理でおすすめなものは？'
+            - 返却値：`['Python','バージョン管理']`
+            ###例5
+            - 質問：'キットカットとガリガリ君だったらどっちを買うのがいいですか？'
+            - 返却値：`['キットカット','ガリガリ君']`
         """
         st.session_state.messages = [
             # {"role": "system", "content": "You are a helpful assistant."}
