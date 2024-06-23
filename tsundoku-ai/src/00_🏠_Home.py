@@ -60,8 +60,22 @@ def select_model():
 def init_messages():
     clear_button = st.sidebar.button("Clear Chats", key="clear")
     if clear_button or "messages" not in st.session_state:
+        system_prompt = """
+            ## 回答ルール
+            - ユーザーの質問文のキーワードを分析し、list型で返却してください。
+            - キーワードが単一の場合は、1要素のlist、複数の場合はその個数分の要素を持ったlistで返却してください。
+
+            ## 質問文とそれに対する返却値の例
+            ###例1
+            - 質問：`データガバナンスについて教えて下さい。`
+            - 返却値：`['データガバナンス']`
+            ###例2
+            - 質問：`SnowflakeとRedshiftのメリットを教えて下さい。`
+            - 返却値：`['Snowflake', 'Redshift']`
+        """
         st.session_state.messages = [
-            {"role": "system", "content": "You are a helpful assistant."}
+            # {"role": "system", "content": "You are a helpful assistant."}
+            {"role": "system", "content": system_prompt}
         ]
         st.session_state.costs = []
 
