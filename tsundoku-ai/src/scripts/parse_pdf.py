@@ -1,9 +1,11 @@
+from os.path import splitext
+
 import fitz
 
 
 def extract_text_from_pdf(pdf_file):
     doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
-    title = pdf_file.name
+    title = splitext(pdf_file.name)[0]
     text = ""
     for page_num in range(len(doc)):
         page = doc.load_page(page_num)
