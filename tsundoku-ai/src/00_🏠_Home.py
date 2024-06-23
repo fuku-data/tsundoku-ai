@@ -1,8 +1,15 @@
 import settings.language
 import settings.llm
 
+# from scripts.extract_question_keywords import classify_question_and_extract_keywords
+from scripts.parse_pdf import extract_text_from_pdf
+from scripts.search_index import (add_documents_to_index, create_search_index, search_index)
+
+import ast
+import json
 import openai
 import os
+from pathlib import Path
 import streamlit as st
 
 
@@ -72,11 +79,21 @@ def init_messages():
             ###例2
             - 質問：`SnowflakeとRedshiftのメリットを教えて下さい。`
             - 返却値：`['Snowflake', 'Redshift']`
+            ###例3
+            - 質問：`Reactのstateとrefの違いを教えてください`
+            - 返却値：`['React','state','ref']`
+            ###例4
+            - 質問：`Pythonのバージョン管理でおすすめなものは？`
+            - 返却値：`['Python','バージョン管理']`
+            ###例5
+            - 質問：`キットカットとガリガリ君だったらどっちを買うのがいいですか？`
+            - 返却値：`['キットカット','ガリガリ君']`
         """
         st.session_state.messages = [
             # {"role": "system", "content": "You are a helpful assistant."}
             {"role": "system", "content": system_prompt}
         ]
+        # st.session_state.messages = []
         st.session_state.costs = []
 
 
@@ -124,7 +141,25 @@ def converse_with_ai(model_name, temperature):
                 messages=messages,  # 文字列に変換したmessagesを渡す
                 temperature=temperature
             )
+        st.write(type(response.choices[0].message.content))
+        st.write(response.choices[0].message.content)
         st.session_state.messages.append({'role': 'assistant', 'content': response.choices[0].message.content})
+        keyword_list = ast.literal_eval(response.choices[0].message.content)
+        st.write(type(keyword_list))
+        st.write(keyword_list)
+        # root_dir = Path(__file__).resolve().parents[0]
+        # ix = create_search_index()
+        # for path in root_dir.joinpath("book").glob("*.pdf"):
+        #     pdf_title, pdf_text = extract_text_from_pdf(path)
+        #     add_documents_to_index(ix, pdf_title, pdf_text)
+        # st.session_state.messages.append({'role': 'assistant', 'content': response.choices[0].message.content})
+        # st.session_state.messages.append({'role': 'assistant', 'content': search_index(response.choices[0].message.content)})
+        results = search_index(keyword_list)
+        for result in results:
+            st.write(result["book_name"])
+            st.write(f"{result['page_number']}ページ")
+        # st.session_state.messages.append({'role': 'assistant', 'content': pdf})
+
 
     # present chat history
     messages = st.session_state.messages

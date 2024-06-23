@@ -19,5 +19,6 @@ WORKDIR /app
 USER streamlit
 
 COPY --chown=streamlit:streamlit ./tsundoku-ai/src .
+COPY --chown=streamlit:streamlit ./book ./book
 
 CMD ["streamlit", "run", "00_🏠_Home.py"]
