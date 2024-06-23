@@ -31,12 +31,12 @@ def main():
 
 def llm_assistant_ui():
     st.set_page_config(
-        page_title='FUKU DATA CATALOG',
+        page_title='積読PDF救済アプリ',
         page_icon='📘',
         layout='wide',
         initial_sidebar_state='expanded'
     )
-    st.header('📘 FUKU DATA CATALOG')
+    st.header('📘 積読PDF救済アプリ')
     st.header(f'🤖 {st.session_state.lg_AI_Assistant}')
     with st.empty():
         if not st.session_state.llm_connection_flag:
