@@ -141,12 +141,13 @@ def converse_with_ai(model_name, temperature):
                 messages=messages,  # 文字列に変換したmessagesを渡す
                 temperature=temperature
             )
-        st.write(type(response.choices[0].message.content))
-        st.write(response.choices[0].message.content)
-        st.session_state.messages.append({'role': 'assistant', 'content': response.choices[0].message.content})
+        # st.write(type(response.choices[0].message.content))
+        # st.write(response.choices[0].message.content)
+
+        # st.session_state.messages.append({'role': 'assistant', 'content': response.choices[0].message.content})
         keyword_list = ast.literal_eval(response.choices[0].message.content)
-        st.write(type(keyword_list))
-        st.write(keyword_list)
+        # st.write(type(keyword_list))
+        # st.write(keyword_list)
         # root_dir = Path(__file__).resolve().parents[0]
         # ix = create_search_index()
         # for path in root_dir.joinpath("book").glob("*.pdf"):
@@ -155,10 +156,17 @@ def converse_with_ai(model_name, temperature):
         # st.session_state.messages.append({'role': 'assistant', 'content': response.choices[0].message.content})
         # st.session_state.messages.append({'role': 'assistant', 'content': search_index(response.choices[0].message.content)})
         results = search_index(keyword_list)
+        reference_list = []
         for result in results:
-            st.write(result["book_name"])
-            st.write(f"{result['page_number']}ページ")
+            name_and_page_list = [result["book_name"], f"{result['page_number']}ページ"]
+            # st.write(result["book_name"])
+            # st.write(f"{result['page_number']}ページ")
+            reference_list.append(name_and_page_list)
         # st.session_state.messages.append({'role': 'assistant', 'content': pdf})
+        reference_contents = '以下の書籍のページが参考になります\n\n'
+        for reference in reference_list:
+            reference_contents += f'- 書籍名：{reference[0]}\n- ページ：{reference[1]}\n---\n'
+        st.session_state.messages.append({'role': 'assistant', 'content': reference_contents})
 
 
     # present chat history
@@ -173,8 +181,8 @@ def converse_with_ai(model_name, temperature):
             with st.chat_message('user'):
                 st.markdown(message['content'])
             # st.success(f"""😀 You: {message['content']}""")
-        else:
-            st.markdown(f"""System message: {message['content']}""")
+        # else:
+        #     st.markdown(f"""System message: {message['content']}""")
 
 
 if __name__ == '__main__':
