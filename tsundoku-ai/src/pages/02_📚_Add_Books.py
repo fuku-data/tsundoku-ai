@@ -1,6 +1,6 @@
 import streamlit as st
 from scripts.parse_pdf import extract_text_from_pdf
-from scripts.search_index import add_documents_to_index
+from scripts.search_index import add_documents_to_index, create_search_index
 
 st.title("書籍 PDF アップロード")
 
@@ -9,6 +9,7 @@ uploaded_files = st.file_uploader(
 )
 
 if uploaded_files:
+    create_search_index()
     for uploaded_file in uploaded_files:
         pdf_title, pdf_text = extract_text_from_pdf(uploaded_file)
         add_documents_to_index(pdf_title, pdf_text)
