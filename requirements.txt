@@ -1,0 +1,7 @@
+numpy
+pandas
+langchain
+openai
+plotly
+streamlit
+streamlit-tree-select

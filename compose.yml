@@ -1,0 +1,10 @@
+services:
+  llm_ds:
+    container_name: streamlit
+    build: .
+    ports:
+      - "9090:8501"
+    volumes:
+      - ./tsundoku-ai/src:/app
+    environment:
+      - OPENAI_API_KEY=$OPENAI_API_KEY
