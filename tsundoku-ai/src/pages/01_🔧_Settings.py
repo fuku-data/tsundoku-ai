@@ -74,12 +74,6 @@ def setting_ui():
             disabled=st.session_state.llm_set_or_clear_button_disabled
         )
 
-        # NOTE: 開発しやすいようにAPIキーをGUIから設定する手間を省く
-        if len(os["OPENAI_API_KEY=$OPENAI_API_KEY"]) > 0:
-            st.session_state.llm_openai_api_key = os["OPENAI_API_KEY=$OPENAI_API_KEY"]
-            st.session_state.llm_connection_flag = True
-            st.session_state.llm_click_set_or_clear_button_result = 'success'
-
         with st.empty():
             if st.session_state.llm_click_set_or_clear_button_result == 'success':
                 st.success(

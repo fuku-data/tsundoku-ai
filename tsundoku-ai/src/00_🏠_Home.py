@@ -2,12 +2,20 @@ import settings.language
 import settings.llm
 
 import openai
+import os
 import streamlit as st
 
 
 def main():
     settings.language.session_init_render()
     settings.llm.session_init_render()
+    # NOTE: 開発しやすいようにAPIキーをGUIから設定する手間を省く
+    key: str = os.getenv("OPENAI_API_KEY")
+    if len(key) > 0:
+        st.session_state.llm_openai_api_key = key
+        st.session_state.llm_connection_flag = True
+        st.session_state.llm_click_set_or_clear_button_result = 'success'
+        # st.session_state.llm_set_or_clear_button_disabled = not st.session_state.llm_set_or_clear_button_disabled
     llm_assistant_ui()
     model_name, temperature = select_model()
     init_messages()
