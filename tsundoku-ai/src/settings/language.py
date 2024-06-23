@@ -4,47 +4,47 @@ import settings.llm
 
 def session_init_render() -> None:
     if "lg_radio_options" not in st.session_state:
-        st.session_state.lg_radio_options = ['English', 'Japanese']
+        st.session_state.lg_radio_options = ['英語', '日本語']
     if "lg_radio_index" not in st.session_state:
-        st.session_state.lg_radio_index = 0
+        st.session_state.lg_radio_index = 1
     if "lg_select_radio_button_result" not in st.session_state:
         st.session_state.lg_select_radio_button_result = ''
     if "lg_Settings" not in st.session_state:
-        st.session_state.lg_Settings = 'Settings'
+        st.session_state.lg_Settings = '設定'
     if "lg_Language_Settings" not in st.session_state:
-        st.session_state.lg_Language_Settings = 'Language Settings'
+        st.session_state.lg_Language_Settings = '言語設定'
     if "lg_AI_Settings" not in st.session_state:
-        st.session_state.lg_AI_Settings = 'AI Settings'
+        st.session_state.lg_AI_Settings = 'AIの設定'
     if "lg_OpenAI_API_Key_Setting" not in st.session_state:
-        st.session_state.lg_OpenAI_API_Key_Setting = 'OpenAI API Key Setting'
+        st.session_state.lg_OpenAI_API_Key_Setting = 'OpenAI APIキーの設定'
     if "lg_API_Key" not in st.session_state:
-        st.session_state.lg_API_Key = 'API Key'
+        st.session_state.lg_API_Key = 'APIキー'
     if "lg_Set_API_key" not in st.session_state:
-        st.session_state.lg_Set_API_key = 'Set API Key'
+        st.session_state.lg_Set_API_key = 'APIキーを設定'
     if "lg_Clear_API_key" not in st.session_state:
-        st.session_state.lg_Clear_API_key = 'Clear API Key'
+        st.session_state.lg_Clear_API_key = 'APIキーをクリア'
     if "lg_Choose_Model" not in st.session_state:
-        st.session_state.lg_Choose_Model = 'Choose Model'
+        st.session_state.lg_Choose_Model = 'モデルを選択'
     if "lg_Temperature" not in st.session_state:
         st.session_state.lg_Temperature = 'Temperature'
     if "lg_Processing" not in st.session_state:
-        st.session_state.lg_Processing = 'Processing...'
+        st.session_state.lg_Processing = '処理中...'
     if "lg_Successful_Connection" not in st.session_state:
-        st.session_state.lg_Successful_Connection = 'Successful Connection!'
+        st.session_state.lg_Successful_Connection = '接続に成功しました！'
     if "lg_The_API_key_you_typed_is_not_valid" not in st.session_state:
-        st.session_state.lg_The_API_key_you_typed_is_not_valid = 'ERROR: The API key you typed is not valid'
+        st.session_state.lg_The_API_key_you_typed_is_not_valid = 'エラー: 入力されたAPIキーは有効ではありません。'
     if "lg_AI_Assistant" not in st.session_state:
-        st.session_state.lg_AI_Assistant = 'AI Assistant'
+        st.session_state.lg_AI_Assistant = "＜質問を入力してね！積読から探してくるよ！"
     if "lg_COVID19_Number_of_cases_by_country" not in st.session_state:
-        st.session_state.lg_COVID19_Number_of_cases_by_country = 'COVID-19 Number of cases by country'
+        st.session_state.lg_COVID19_Number_of_cases_by_country = 'COVID-19国別感染者数'
     if "lg_No_OpenAI_API_key_is_provided" not in st.session_state:
-        st.session_state.lg_No_OpenAI_API_key_is_provided = 'No OpenAI API key is provided.'
+        st.session_state.lg_No_OpenAI_API_key_is_provided = 'OpenAIのAPIキーが設定されていません。'
     if "lg_Can_I_ask_a_question" not in st.session_state:
-        st.session_state.lg_Can_I_ask_a_question = 'Can I ask a question?'
+        st.session_state.lg_Can_I_ask_a_question = 'ご質問はありませんか？'
     if "lg_Send" not in st.session_state:
-        st.session_state.lg_Send = 'Send'
+        st.session_state.lg_Send = '送信'
     if "lg_Datasource" not in st.session_state:
-        st.session_state.lg_Datasource = 'Datasource'
+        st.session_state.lg_Datasource = 'データソース'
 
 
 def session_re_render() -> None:
@@ -119,8 +119,8 @@ dict = {
         'Japanese': 'エラー: 入力されたAPIキーは有効ではありません。'
     },
     'lg_AI_Assistant': {
-        'English': 'AI Assistant',
-        'Japanese': 'AI アシスタント'
+        'English': "＜Enter your question! I'll look for you in the stacks!",
+        'Japanese': '＜質問を入力してね！積読から探してくるよ！'
     },
     'lg_COVID19_Number_of_cases_by_country': {
         'English': 'COVID-19 Number of cases by country',
