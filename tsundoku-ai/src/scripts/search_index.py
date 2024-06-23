@@ -35,7 +35,11 @@ def search_index(keywords):
         parser = MultifieldParser(["content"], schema=ix.schema)
         query = And([parser.parse(keyword) for keyword in keywords])
         results = searcher.search(query)
-        for result in results:
-            print(result["book_name"])
-            print(result["page_number"])
-            print(result["content"])
+        return [
+            {
+                "book_name": result["book_name"],
+                "page_number": result["page_number"],
+                "content": result["content"],
+            }
+            for result in results
+        ]
