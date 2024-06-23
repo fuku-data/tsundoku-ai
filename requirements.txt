@@ -3,5 +3,7 @@ pandas
 langchain
 openai
 plotly
+PyMuPDF
 streamlit
 streamlit-tree-select
+whoosh
