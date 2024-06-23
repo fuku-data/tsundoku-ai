@@ -16,14 +16,13 @@ def create_search_index():
         content=TEXT(stored=True),
     )
     if index_dir.exists():
-        ix = open_dir(str(index_dir))
-        return ix
-    index_dir.mkdir(exist_ok=True)
-    ix = create_in(str(index_dir), schema)
-    return ix
+        return
+    index_dir.mkdir()
+    create_in(str(index_dir), schema)
 
 
-def add_documents_to_index(ix, title, text):
+def add_documents_to_index(title, text):
+    ix = open_dir(str(index_dir))
     writer = ix.writer()
     for page, section in enumerate(text.split("\n\n")):
         writer.add_document(book_name=title, page_number=page + 1, content=section)
